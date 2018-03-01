@@ -34,13 +34,17 @@
     "typescript": "latest"
   },
   "scripts": {
-    "prepare": "yarn run clean && yarn run build",
+    "prepare": "yarn run clean && yarn run build",<% 
+    if (params.languageContribution) { %>
+    "copy-ls": "rm -rf ./build && mkdir build && cp ../<%= params.extensionName %>-ls.jar ./build",<%} %>
     "clean": "rimraf lib",
     "build": "tsc",
     "watch": "tsc -w"
   },
   "theiaExtensions": [
     {
+      <% if (params.languageContribution) { %>
+      "backend": "lib/node/<%= params.extensionName %>-backend-module",<% } %>
       "frontend": "lib/browser/<%= params.extensionName %>-frontend-module"
     }
   ]

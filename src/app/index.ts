@@ -14,7 +14,10 @@ module.exports = class TheiaExtension extends Base {
         electron: boolean
         vscode: boolean
         theiaVersion: string
-        lernaVersion: string
+        lernaVersion: string,
+        //Language contribution options
+        languageContribution: Boolean,
+        languageExtension: string
     };
 
     constructor(args: string | string[], options: any) {
@@ -22,6 +25,19 @@ module.exports = class TheiaExtension extends Base {
         this.argument('extensionName', {
             type: String,
             required: false,
+        });
+
+        this.option('languageContribution', {
+            alias: 'lang',
+            description: 'Generate a language contribution',
+            type: Boolean,
+            default: false
+        });
+
+        this.option('languageExtension', {
+            alias: 'lang-ext',
+            description: 'The extension for the files written in the language',
+            type: String
         });
 
         this.option('browser', {
@@ -123,12 +139,17 @@ module.exports = class TheiaExtension extends Base {
             vscode: options.vscode,
             theiaVersion: options["theia-version"],
             lernaVersion: options["lerna-version"],
+            languageContribution: options["languageContribution"],
+            languageExtension: options["languageExtension"]
         }
         options.params = this.params
+        console.log(options.params);
         if ((this.options as any).browser)
             this.composeWith(require.resolve('../browser'), this.options);
         if ((this.options as any).electron)
             this.composeWith(require.resolve('../electron'), this.options);
+        if ((this.options as any).languageContribution)
+            this.composeWith(require.resolve('../language'), this.options);
     }
 
     writing() {
@@ -185,7 +206,7 @@ module.exports = class TheiaExtension extends Base {
     }
 
     install() {
-        this.spawnCommand('yarn', []);
+        //this.spawnCommand('yarn', []);
     }
 
     private _capitalize(name: string): string {
