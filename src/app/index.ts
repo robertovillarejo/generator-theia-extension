@@ -56,7 +56,7 @@ module.exports = class TheiaExtension extends Base {
             alias: 'x',
             description: 'Generate an example contribution',
             type: Boolean, 
-            default: true
+            default: false
         });
         this.option('vscode', {
             alias: 'c',
