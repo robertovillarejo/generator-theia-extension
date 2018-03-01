@@ -206,7 +206,7 @@ module.exports = class TheiaExtension extends Base {
     }
 
     install() {
-        //this.spawnCommand('yarn', []);
+        this.spawnCommand('yarn', []);
     }
 
     private _capitalize(name: string): string {
