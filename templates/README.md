@@ -1,5 +1,5 @@
-# Hello World Extension Example
-The example of how to build the Theia-based applications with the <%= params.extensionName %>-extension.
+# The <%= params.extensionName %> Extension
+<%= description %>
 
 ## Getting started
 
@@ -15,6 +15,41 @@ Install npm and node.
 Install yarn.
 
     npm install -g yarn
+
+<%if (params.languageContribution) { %>
+## Creating the grammar
+Create a XText project in root folder using the XText Eclipse plugin.
+
+Follow this guidelines:
+- Project name: `<YOUR PACKAGE>.<%= params.extensionName %>
+- Location: <THIS FOLDER>`
+- Name: `<YOUR PACKAGE>.<%= params.extensionName %>.<YOUR LANGUAGE NAME CAPITALIZED>`. Example: mx.infotec.dads.kukulkan.Kukulkan
+- Extensions: <%= params.languageExtension %> 
+
+**Click next**  
+
+- Facets: 
+- [x] Generic IDE Support
+- [x] Testing Support
+
+- Preferred Build System: **Gradle**
+- Build Language Server: **Fat Jar**
+- Source Layout: **Maven/Gradle**  
+
+**Click Finish**
+
+## Generating the language server
+
+    cd <YOUR XText PROJECT>
+    ./gradlew shadowJar
+
+A jar will be generated in `<YOUR XText PROJECT>/<YOUR XText PROJECT>.ide/build/libs`.  
+
+- Copy the relative jar path in the copy-ls script in `<YOUR EXTENSION FOLDER>.package.json`
+
+- Copy the relative jar path in `<YOUR EXTENSION FOLDER>/node/<%= params.extensionName %>-backend-module.ts`
+
+<% } %>
 
 ## Running the browser example
 
