@@ -1,5 +1,5 @@
 # The <%= params.extensionName %> Extension
-<%= description %>
+<%= params.description %>
 
 ## Getting started
 

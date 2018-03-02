@@ -36,7 +36,7 @@
   "scripts": {
     "prepare": "yarn run clean && yarn run build",<% 
     if (params.languageContribution) { %>
-    "copy-ls": "rm -rf ./build && mkdir build && cp ../<%= params.extensionName %>-ls.jar ./build",<%} %>
+    "copy-ls": "rm -rf ./build && mkdir build && cp ../XTEXT-PROJECT/dsl-ls.jar ./build/dsl-ls.jar",<%} %>
     "clean": "rimraf lib",
     "build": "tsc",
     "watch": "tsc -w"

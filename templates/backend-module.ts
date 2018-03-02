@@ -21,7 +21,7 @@ class DSLContribution extends BaseLanguageServerContribution {
     readonly name = "<%= params.extensionName %>";
 
     start(clientConnection: IConnection): void {
-        const jar = path.resolve(__dirname, '../../build/<%= params.extensionName %>-ls.jar');
+        const jar = path.resolve(__dirname, '../../build/dsl-ls.jar');
 
         const command = 'java';
         const args: string[] = [

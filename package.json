@@ -16,6 +16,7 @@
   "author": "TypeFox",
   "license": "Apache-2.0",
   "dependencies": {
+    "properties-parser": "0.3.1",
     "yeoman-generator": "^1.0.0"
   },
   "devDependencies": {
